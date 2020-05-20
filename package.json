@@ -1,0 +1,15 @@
+{
+  "name": "@fczbkk/workshop-testing",
+  "version": "1.0.0",
+  "author": "Riki Fridrich <riki@fczbkk.com> (http://fczbkk.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
