@@ -46,31 +46,39 @@ describe('Distance Checker library', function () {
 
   describe('initDistanceChecker', function () {
 
+    const callback = jest.fn()
+    let cleanup = function () {}
+
+    beforeEach(function () {
+      callback.mockReset()
+    })
+
+    afterEach(function () {
+      cleanup()
+    })
+
     it('should listen to click', function () {
-      const callback = jest.fn()
-      initDistanceChecker({ x: 0, y: 0 }, callback)
+      cleanup = initDistanceChecker({ x: 0, y: 0 }, callback)
       simulateClick(0, 0)
       expect(callback).toHaveBeenCalled()
     })
 
     it('should only execute callback once', function () {
-      const callback = jest.fn()
       expect(callback).not.toHaveBeenCalled()
-      initDistanceChecker({ x: 0, y: 0 }, callback)
+      cleanup = initDistanceChecker({ x: 0, y: 0 }, callback)
       simulateClick(0, 0)
       expect(callback.mock.calls.length).toBe(1)
     })
 
     it('should use X and Y position of mouse', function () {
-      const callback = jest.fn()
-      initDistanceChecker({ x: 0, y: 0 }, callback)
+      cleanup = initDistanceChecker({ x: 0, y: 0 }, callback)
       simulateClick(0, 100)
       expect(callback).toHaveBeenCalledWith(100)
     })
 
     it('should use console.log', function () {
       jest.spyOn(console, 'log')
-      initDistanceChecker({ x: 0, y: 0 }, console.log)
+      cleanup = initDistanceChecker({ x: 0, y: 0 }, console.log)
       simulateClick(0, 100)
       expect(console.log).toHaveBeenCalledWith(100)
     })
